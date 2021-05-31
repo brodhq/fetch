@@ -1,0 +1,37 @@
+{
+    "private": false,
+    "name": "@geislabs/fetch",
+    "version": "0.0.45",
+    "description": "> TODO: description",
+    "author": "mads hargreave <mads.hargreave@gmail.com>",
+    "homepage": "",
+    "repository": "git://github.com/geislabs/fetch.git",
+    "license": "ISC",
+    "main": "dist/index.js",
+    "directories": {
+        "dist": "dist",
+        "test": "test"
+    },
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "registry": "http://registry.npmjs.org/",
+        "access": "public"
+    },
+    "scripts": {
+        "clean": "rimraf dist",
+        "build": "tsc",
+        "watch": "tsc --watch"
+    },
+    "dependencies": {
+        "@geislabs/geis-html": "^0.0.45",
+        "@geislabs/geis-json": "^0.0.45",
+        "@geislabs/geis-type": "^0.0.45",
+        "@geislabs/protocol": "^0.0.47",
+        "node-fetch": "^2.6.1"
+    },
+    "devDependencies": {
+        "@types/node-fetch": "^2.5.10"
+    }
+}
