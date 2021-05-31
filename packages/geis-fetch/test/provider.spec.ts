@@ -1,12 +1,9 @@
 import { config } from '../lib'
 import { jsonImpl, textImpl } from './support'
 
-const fetch = config(
-    async () => ({
-        body: 'hello',
-    }),
-    [textImpl, jsonImpl]
-)
+const fetch = config(async () => ({
+    body: 'hello',
+}))([textImpl, jsonImpl])
 
 describe('provider', () => {
     test('callback', async () => {
