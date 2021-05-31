@@ -1,4 +1,4 @@
-import { JsonPath } from '@geislabs/geis-json'
+import { JsonPath } from '@geislabs/json'
 import {
     Protocol,
     ProtocolFn,

@@ -1,4 +1,4 @@
-import { Json, JsonPath } from '@geislabs/geis-json'
+import { Json, JsonPath } from '@geislabs/json'
 import { URL } from 'url'
 import { AnyConfig, isBody, isHeader } from '../config'
 import { FetchFn } from '../fetchConfig'

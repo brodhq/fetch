@@ -26,8 +26,8 @@
     },
     "dependencies": {
         "@geislabs/geis-html": "^0.0.45",
-        "@geislabs/geis-json": "^0.0.45",
         "@geislabs/geis-type": "^0.0.45",
+        "@geislabs/json": "^0.0.45",
         "@geislabs/protocol": "^0.0.47",
         "node-fetch": "^2.6.1"
     },
