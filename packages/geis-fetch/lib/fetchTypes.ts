@@ -6,6 +6,7 @@ import {
     Subprotocol,
 } from '@geislabs/protocol'
 import { AnyConfig, body, header } from './config'
+import { FetchFn } from './fetchConfig'
 import { FetchRequest } from './request'
 import { FetchResponse } from './response'
 
@@ -19,7 +20,8 @@ export interface FetchSubProtocol<
         TInit,
         TSource,
         FetchRequest<TValue>,
-        FetchResponse<TValue>
+        FetchResponse<TValue>,
+        FetchFn
     > {}
 
 export interface FetchProtocolFn
