@@ -1,6 +1,6 @@
 import { config } from '../lib'
 
-describe('header', () => {
+describe.skip('header', () => {
     test('simple', async () => {
         const fetch = config(async (request) => {
             expect(request.headers).toStrictEqual({

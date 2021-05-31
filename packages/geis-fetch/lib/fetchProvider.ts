@@ -2,7 +2,6 @@ import { createProtocol } from '@geislabs/protocol'
 import { header, body } from './config'
 import { FetchFn } from './fetchConfig'
 import { FetchProtocolFn } from './fetchTypes'
-import { createJson } from './json/jsonFacade'
 import { nodeFetch } from './node/nodeFacade'
 
 /**
@@ -11,15 +10,10 @@ import { nodeFetch } from './node/nodeFacade'
  * @returns
  */
 export const config = (adapter: FetchFn = nodeFetch): FetchProtocolFn =>
-    Object.assign(
-        createProtocol({
-            json: createJson(adapter),
-        }),
-        {
-            header,
-            body,
-        }
-    )
+    Object.assign(createProtocol({}), {
+        header,
+        body,
+    })
 
 /**
  * Fetch resources

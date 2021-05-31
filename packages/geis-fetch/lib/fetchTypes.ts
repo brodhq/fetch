@@ -1,10 +1,4 @@
-import { JsonPath } from '@geislabs/json'
-import {
-    Protocol,
-    ProtocolFn,
-    ProtocolResponse,
-    Subprotocol,
-} from '@geislabs/protocol'
+import { ProtocolFn, ProtocolResponse, Subprotocol } from '@geislabs/protocol'
 import { AnyConfig, body, header } from './config'
 import { FetchFn } from './fetchConfig'
 import { FetchRequest } from './request'
@@ -24,11 +18,7 @@ export interface FetchSubProtocol<
         FetchFn
     > {}
 
-export interface FetchProtocolFn
-    extends ProtocolFn<
-        Protocol<FetchSubProtocol<'json', AnyConfig, object, JsonPath>>
-        // | FetchSubProtocol<'html', AnyConfig, string, string>
-    > {
+export interface FetchProtocolFn extends ProtocolFn<any> {
     header: typeof header
     body: typeof body
 }
