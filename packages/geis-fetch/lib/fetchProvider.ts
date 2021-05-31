@@ -13,8 +13,10 @@ import { buildRequest } from './request/requestFactory'
  * @returns
  */
 export const config =
-    <TAdapter extends FetchAdapter>(fetchFn: FetchFn = nodeFetch) =>
-    (adapters: TAdapter[] = []): FetchProtocolFn<TAdapter> =>
+    (fetchFn: FetchFn = nodeFetch) =>
+    <TAdapter extends FetchAdapter>(
+        adapters: TAdapter[] = []
+    ): FetchProtocolFn<TAdapter> =>
         // @ts-expect-error
         Object.assign(
             createProtocol(
