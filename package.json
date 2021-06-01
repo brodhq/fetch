@@ -7,6 +7,7 @@
         "dev": "lerna run watch --stream --parallel",
         "build": "lerna run build --stream",
         "start": "lerna run start --stream",
+        "prepare": "husky install",
         "release:patch": "git add -A && git commit -am \"released\" --allow-empty && lerna version patch --yes --force-publish",
         "test:coverage": "jest --collect-coverage",
         "test": "jest",
@@ -14,8 +15,7 @@
         "test:e2e": "jest \"packages/geis-e2e\"",
         "watch": "jest --watch",
         "watch:e2e": "jest \"packages/geis-e2e\" --watch",
-        "watch:protocol": "jest \"packages/geis-protocol\" --watch",
-        "prepare": "husky install"
+        "watch:protocol": "jest \"packages/geis-protocol\" --watch"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^19.0.0",
