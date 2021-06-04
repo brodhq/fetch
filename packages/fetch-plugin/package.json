@@ -27,10 +27,10 @@
     "dependencies": {
         "@geislabs/fetch": "^0.0.60",
         "@geislabs/http": "^0.0.78",
-        "@geislabs/json": "^0.0.54",
-        "@geislabs/json-fetch": "^0.0.54",
+        "@geislabs/json": "^0.0.60",
+        "@geislabs/json-fetch": "^0.0.60",
         "@geislabs/plugin": "^0.0.2",
-        "@geislabs/protocol": "^0.0.47"
+        "@geislabs/protocol": "^0.0.50"
     },
     "devDependencies": {
         "@types/node-fetch": "^2.5.10"

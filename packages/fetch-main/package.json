@@ -25,8 +25,8 @@
         "watch": "tsc --watch"
     },
     "dependencies": {
-        "@geislabs/geis-type": "^0.0.45",
-        "@geislabs/protocol": "^0.0.47",
+        "@geislabs/geis-type": "^0.0.61",
+        "@geislabs/protocol": "^0.0.50",
         "node-fetch": "^2.6.1"
     },
     "devDependencies": {
