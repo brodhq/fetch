@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "@geislabs/fetch-plugin",
-    "version": "0.0.57",
+    "version": "0.0.58",
     "description": "> TODO: description",
     "author": "mads hargreave <mads.hargreave@gmail.com>",
     "homepage": "",
@@ -25,12 +25,12 @@
         "watch": "tsc --watch"
     },
     "dependencies": {
-        "@geislabs/fetch": "^0.0.57",
+        "@geislabs/fetch": "^0.0.58",
         "@geislabs/http": "^0.0.78",
-        "@geislabs/protocol": "^0.0.47",
-        "@geislabs/plugin": "^0.0.2",
         "@geislabs/json": "^0.0.54",
-        "@geislabs/json-fetch": "^0.0.54"
+        "@geislabs/json-fetch": "^0.0.54",
+        "@geislabs/plugin": "^0.0.2",
+        "@geislabs/protocol": "^0.0.47"
     },
     "devDependencies": {
         "@types/node-fetch": "^2.5.10"
