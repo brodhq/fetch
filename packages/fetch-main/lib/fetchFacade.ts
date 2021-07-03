@@ -1,4 +1,4 @@
-import { FetchArg3, FetchArg4, FetchFn } from './api'
+import { AwaitableFetchRequest, FetchArg3, FetchArg4, FetchFn } from './api'
 import { buildCallback, buildInit, buildAttrs } from './api/apiFactory'
 import { header, body } from './config'
 import { Fetchable } from './fetchable'
@@ -17,13 +17,21 @@ export class Fetch {
             const init = buildInit(arg3)
             const callback = buildCallback(arg3, arg4)
             const attrs = buildAttrs(url, init)
-            return createResponse(
-                {
-                    adapter: this.config.adapter,
-                    fetchable,
-                },
-                attrs
-            ).then(callback)
+            return {
+                ...attrs.request,
+                url,
+                then: (onFulfilled) =>
+                    createResponse(
+                        {
+                            adapter: this.config.adapter,
+                            fetchable,
+                        },
+                        attrs
+                    )
+                        .then(callback)
+                        // @ts-expect-error
+                        .then(onFulfilled),
+            } as AwaitableFetchRequest<T>
         },
         {
             header,

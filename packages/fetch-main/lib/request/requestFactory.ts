@@ -5,7 +5,7 @@ export function buildRequest<T>({
     method = 'get',
     headers = {},
     ...attrs
-}: CreateRequestAttrs): FetchRequest<T> {
+}: CreateRequestAttrs<T>): FetchRequest<T> {
     return {
         url: attrs.url,
         method,

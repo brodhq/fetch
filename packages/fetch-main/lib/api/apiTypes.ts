@@ -1,5 +1,6 @@
 import { AnyConfig, header, body } from '../config'
 import { Fetchable } from '../fetchable'
+import { FetchRequest } from '../request'
 import { FetchResponse } from '../response'
 
 export type FetchCallback<T, TRet = unknown> = (
@@ -14,26 +15,33 @@ export type FetchArg4<T, TRet = unknown> = FetchCallback<T, TRet>
 export interface FetchFn {
     header: typeof header
     body: typeof body
-    <T>(fetchable: Fetchable<T>, url: string): Promise<FetchResponse>
+    <T>(fetchable: Fetchable<T>, url: string): AwaitableFetchRequest<T>
     <T>(
         fetchable: Fetchable<T>,
         url: string,
         init: FetchInit
-    ): Promise<FetchResponse>
+    ): AwaitableFetchRequest<T>
     <T, TRet>(
         fetchable: Fetchable<T>,
         url: string,
         init: FetchInit,
         callback: FetchCallback<T, TRet>
-    ): Promise<TRet>
+    ): AwaitableFetchRequest<TRet>
     <T, TRet>(
         fetchable: Fetchable<T>,
         url: string,
         callback: FetchCallback<T, TRet>
-    ): Promise<TRet>
+    ): AwaitableFetchRequest<TRet>
     <T, TRet>(
         fetchable: Fetchable<T>,
         url: string,
         callback?: FetchCallback<T, TRet>
-    ): Promise<FetchResponse>
+    ): AwaitableFetchRequest<TRet>
+}
+
+export interface AwaitableFetchRequest<T, TRet = unknown>
+    extends FetchRequest<T> {
+    then(
+        onFulfilled?: ((value: T) => any | PromiseLike<TRet>) | undefined | null
+    ): Promise<TRet | never>
 }
