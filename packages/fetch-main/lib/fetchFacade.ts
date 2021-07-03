@@ -1,4 +1,4 @@
-import { AwaitableFetchRequest, FetchArg3, FetchArg4, FetchFn } from './api'
+import { AwaitableFetchRequest, FetchArg2, FetchArg3, FetchFn } from './api'
 import { buildCallback, buildInit, buildAttrs } from './api/apiFactory'
 import { header, body } from './config'
 import { Fetchable } from './fetchable'
@@ -10,16 +10,14 @@ export class Fetch {
     request: FetchFn = Object.assign(
         <T, TRet>(
             fetchable: Fetchable<T>,
-            url: string,
-            arg3?: FetchArg3<T, TRet>,
-            arg4?: FetchArg4<T, TRet>
+            arg2: FetchArg2<T>,
+            arg3?: FetchArg3<T, TRet>
         ) => {
-            const init = buildInit(arg3)
-            const callback = buildCallback(arg3, arg4)
-            const attrs = buildAttrs(url, init)
+            const init = buildInit(arg2)
+            const callback = buildCallback(arg2, arg3)
+            const attrs = buildAttrs(init)
             return {
                 ...attrs.request,
-                url,
                 then: (onFulfilled) =>
                     createResponse(
                         {
@@ -31,7 +29,7 @@ export class Fetch {
                         .then(callback)
                         // @ts-expect-error
                         .then(onFulfilled),
-            } as AwaitableFetchRequest<T>
+            } as AwaitableFetchRequest<T, TRet>
         },
         {
             header,

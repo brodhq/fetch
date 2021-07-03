@@ -33,10 +33,13 @@ describe('header', () => {
                 },
             },
         })
-        await fetch(Text, 'google.com', [
-            fetch.header('header-1', '123'),
-            fetch.header('header-2', '345'),
-        ])
+        await fetch(Text, {
+            url: 'google.com',
+            headers: {
+                'header-1': '123',
+                'header-2': '345',
+            },
+        })
     })
     test('encoder', async () => {
         expect.hasAssertions()

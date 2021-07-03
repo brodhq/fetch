@@ -1,5 +1,5 @@
 import { config } from '../lib'
-import { Text, Json } from './support'
+import { Text } from './support'
 
 const fetch = config({
     adapter: {
@@ -18,3 +18,17 @@ describe('promise', () => {
         })
     })
 })
+
+// const request = fetch(
+//     Json,
+//     (request) => ({
+//         url: 'http://google.com',
+//         method: 'get',
+//         headers: {},
+//     }),
+//     (response) => ({
+//         title1: 1,
+//         title2: 1,
+//         title3: 1,
+//     })
+// )
