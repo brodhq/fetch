@@ -1,4 +1,3 @@
-import { AnyConfig, header, body } from '../config'
 import { Fetchable } from '../fetchable'
 import { FetchRequest } from '../request'
 import { CreateRequestAttrs } from '../request/requestAttrs'
@@ -17,8 +16,6 @@ export type FetchArg2<T> = FetchInit<T>
 export type FetchArg3<T, TRet = unknown> = FetchCallback<T, TRet>
 
 export interface FetchFn {
-    header: typeof header
-    body: typeof body
     <T, TRet>(
         fetchable: Fetchable<T>,
         init: FetchInit<T>,
