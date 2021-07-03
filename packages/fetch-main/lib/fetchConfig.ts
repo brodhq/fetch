@@ -1,9 +1,5 @@
-import { FetchRequest } from './request'
+import { FetchAdapter } from './fetchAdapter'
 
-export type FetchFn<T = any> = (
-    request: FetchRequest<T>
-) => Promise<{ body: string | NodeJS.ReadableStream }>
-
-export interface FetchConfig<T = any> {
-    adapter: FetchFn<T>
+export interface FetchConfig {
+    adapter: FetchAdapter
 }

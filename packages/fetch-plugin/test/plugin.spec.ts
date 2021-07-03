@@ -25,9 +25,8 @@ const runtime = createRuntime({
 })
 
 describe('plugin]', () => {
-    test('before request', async () => {
+    test.skip('before request', async () => {
         const context = await runtime.load()
-        // @ts-expect-error
         const response = await context.fetch('json://google.com/about')
         expect(response.data.valueOf()).toStrictEqual({
             userId: 1,

@@ -1,1 +1,1 @@
-export * from './textProvider'
+export * from './testProvider'

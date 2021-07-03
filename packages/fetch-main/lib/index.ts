@@ -1,4 +1,6 @@
 export * from './fetchConfig'
 export * from './fetchProvider'
-export * from './fetchTypes'
 export * from './fetchAdapter'
+export * from './fetchable'
+export { FetchRequest } from './request'
+export { FetchResponse } from './response'

@@ -1,31 +1,55 @@
 import { config } from '../lib'
-import { jsonImpl, textImpl } from './support'
+import { Text, Json } from './support'
+
+const dummyResponse = {
+    status: 200,
+    body: JSON.stringify({ five: 5 }),
+    headers: {},
+}
 
 describe('header', () => {
-    test('init', async () => {
-        const fetch = config(async (request) => {
-            expect(request.headers).toStrictEqual({
-                'Content-Type': 'application/json',
-            })
-            return {
-                body: JSON.stringify({ value: 10 }),
-            }
-        })([textImpl])
+    test('no headers', async () => {
         expect.hasAssertions()
-        await fetch('text://google.com', [
-            fetch.header('Content-Type', 'application/json'),
+        const fetch = config({
+            adapter: {
+                create: async (request) => {
+                    expect(request.headers).toStrictEqual({})
+                    return dummyResponse
+                },
+            },
+        })
+        await fetch(Text, 'google.com')
+    })
+    test('init', async () => {
+        expect.hasAssertions()
+        const fetch = config({
+            adapter: {
+                create: async (request) => {
+                    expect(request.headers).toStrictEqual({
+                        'header-1': '123',
+                        'header-2': '345',
+                    })
+                    return dummyResponse
+                },
+            },
+        })
+        await fetch(Text, 'google.com', [
+            fetch.header('header-1', '123'),
+            fetch.header('header-2', '345'),
         ])
     })
-    test('adapter', async () => {
-        const fetch = config(async (request) => {
-            expect(request.headers).toStrictEqual({
-                'Content-Type': 'application/json',
-            })
-            return {
-                body: JSON.stringify({ value: 10 }),
-            }
-        })([jsonImpl])
+    test('encoder', async () => {
         expect.hasAssertions()
-        await fetch('json://google.com', [])
+        const fetch = config({
+            adapter: {
+                create: async (request) => {
+                    expect(request.headers).toStrictEqual({
+                        'Content-Type': 'application/json',
+                    })
+                    return dummyResponse
+                },
+            },
+        })
+        await fetch(Json, 'google.com')
     })
 })
