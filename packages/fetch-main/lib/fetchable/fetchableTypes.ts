@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 export interface Fetchable<TVal = any> {
     headers?: object
     encode: (value: TVal) => string

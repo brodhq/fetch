@@ -2,109 +2,121 @@
 
 ## Interfaces
 
-- [FetchAdapter](#fetchadapter)
-- [FetchConfig](#fetchconfig)
+- [FetchFn](#fetchfn)
 - [FetchRequest](#fetchrequest)
 - [FetchResponse](#fetchresponse)
-- [Fetchable](#fetchable)
 
 ## Functions
 
 ### config
 
-▸ **config**(`__namedParameters?`): `FetchFn`
+▸ **config**(`__namedParameters?`): [`FetchFn`](#fetchfn)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | `Partial`<[`FetchConfig`](#fetchconfig)\> |
+| `__namedParameters` | `Partial`<`FetchConfig`\> |
 
 #### Returns
 
-`FetchFn`
+[`FetchFn`](#fetchfn)
 
 # Interfaces
 
-## Fetchable
+## Fetchfn
 
-## Type parameters
+## Callable
 
-| Name | Type |
-| :------ | :------ |
-| `TVal` | `any` |
+### FetchFn
 
-## Properties
+▸ **FetchFn**<`T`, `TRet`\>(`fetchable`, `init`): `AwaitableFetchRequest`<`T`, `TRet`\>
 
-### decode
+Fetch data at url as JSON
 
-• **decode**: (`raw`: `string`) => `TVal`
+**`example`**
+```typescript
+const response = fetch(Json, 'https://example.com/posts/1')
+response.status
+// => 200
+```
 
-#### Type declaration
+#### Type parameters
 
-▸ (`raw`): `TVal`
+| Name |
+| :------ |
+| `T` |
+| `TRet` |
 
-##### Parameters
+#### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `raw` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `fetchable` | `Fetchable`<`T`\> | Data type |
+| `init` | `FetchInit`<`T`\> | A URL string or request object |
 
-##### Returns
+#### Returns
 
-`TVal`
+`AwaitableFetchRequest`<`T`, `TRet`\>
 
-___
+### FetchFn
 
-### encode
+▸ **FetchFn**<`T`, `TRet`\>(`fetchable`, `init`, `callback`): `AwaitableFetchRequest`<`T`, `TRet`\>
 
-• **encode**: (`value`: `TVal`) => `string`
+Fetch data at url as JSON and parse response in callback
 
-#### Type declaration
+**`example`**
+```typescript
+const response = fetch(Json, 'https://example.com/posts/1', response => ({
+     title: response.data['title'].toString(),
+     content: response.data['content'].toString(),
+     postedAt: response.data['date'].toDate()
+}))
+response.title
+// => 'my post'
+```
 
-▸ (`value`): `string`
+#### Type parameters
 
-##### Parameters
+| Name |
+| :------ |
+| `T` |
+| `TRet` |
 
-| Name | Type |
-| :------ | :------ |
-| `value` | `TVal` |
+#### Parameters
 
-##### Returns
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `fetchable` | `Fetchable`<`T`\> | Data type |
+| `init` | `FetchInit`<`T`\> | A URL string or request object |
+| `callback` | `FetchCallback`<`T`, `TRet`\> | - |
 
-`string`
+#### Returns
 
-___
+`AwaitableFetchRequest`<`T`, `TRet`\>
 
-### headers
+### FetchFn
 
-• `Optional` **headers**: `object`
+▸ **FetchFn**<`T`, `TRet`\>(`fetchable`, `init`, `callback?`): `AwaitableFetchRequest`<`T`, `TRet`\>
 
-## Fetchadapter
+#### Type parameters
 
-## Methods
-
-### create
-
-▸ **create**(`request`): `Promise`<`RawResponse`\>
+| Name |
+| :------ |
+| `T` |
+| `TRet` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `request` | [`FetchRequest`](#fetchrequest)<`unknown`\> |
+| `fetchable` | `Fetchable`<`T`\> |
+| `init` | `FetchInit`<`T`\> |
+| `callback?` | `FetchCallback`<`T`, `TRet`\> |
 
 #### Returns
 
-`Promise`<`RawResponse`\>
-
-## Fetchconfig
-
-## Properties
-
-### adapter
-
-• **adapter**: [`FetchAdapter`](#fetchadapter)
+`AwaitableFetchRequest`<`T`, `TRet`\>
 
 ## Fetchrequest
 

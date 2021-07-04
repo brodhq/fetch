@@ -11,7 +11,7 @@
         "release:patch": "git add -A && git commit -am \"released\" --allow-empty && lerna version patch --yes --force-publish",
         "docs": "npm run docs:prepare && npm run docs:generate && npm run docs:concat && npm run docs:cleanup",
         "docs:prepare": "rm -rf docs -r && rm -rf tmp && mkdir docs",
-        "docs:generate": "typedoc --readme none --hidePageTitle --hideBreadcrumbs --hideInPageTOC --disableSources --out tmp packages/fetch-main/lib/index.ts",
+        "docs:generate": "typedoc --excludeInternal --readme none --hidePageTitle --hideBreadcrumbs --hideInPageTOC --disableSources --out tmp packages/fetch-main/lib/index.ts",
         "docs:concat": "concat-md --file-name-as-title --dir-name-as-title --debug tmp > docs/README.md",
         "docs:cleanup": "rm -rf tmp",
         "test:coverage": "jest --collect-coverage",

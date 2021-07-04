@@ -16,6 +16,43 @@ export type FetchArg2<T> = FetchInit<T>
 export type FetchArg3<T, TRet = unknown> = FetchCallback<T, TRet>
 
 export interface FetchFn {
+    /**
+     * Fetch data at url as JSON
+     *
+     * @param fetchable - Data type
+     * @param init - A URL string or request object
+     * @example
+     * ```typescript
+     * const response = fetch(Json, 'https://example.com/posts/1')
+     * response.status
+     * // => 200
+     * ```
+     */
+    <T, TRet>(
+        fetchable: Fetchable<T>,
+        init: FetchInit<T>
+    ): AwaitableFetchRequest<T, TRet>
+    /**
+     * Fetch data at url as JSON and parse response in callback
+     *
+     * @param fetchable - Data type
+     * @param init - A URL string or request object
+     * @example
+     * ```typescript
+     * const response = fetch(Json, 'https://example.com/posts/1', response => ({
+     *      title: response.data['title'].toString(),
+     *      content: response.data['content'].toString(),
+     *      postedAt: response.data['date'].toDate()
+     * }))
+     * response.title
+     * // => 'my post'
+     * ```
+     */
+    <T, TRet>(
+        fetchable: Fetchable<T>,
+        init: FetchInit<T>,
+        callback: FetchCallback<T, TRet>
+    ): AwaitableFetchRequest<T, TRet>
     <T, TRet>(
         fetchable: Fetchable<T>,
         init: FetchInit<T>,
