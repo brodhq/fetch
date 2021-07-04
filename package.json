@@ -9,6 +9,11 @@
         "start": "lerna run start --stream",
         "prepare": "husky install",
         "release:patch": "git add -A && git commit -am \"released\" --allow-empty && lerna version patch --yes --force-publish",
+        "docs": "npm run docs:prepare && npm run docs:generate && npm run docs:concat && npm run docs:cleanup",
+        "docs:prepare": "rm -rf docs -r && rm -rf tmp && mkdir docs",
+        "docs:generate": "typedoc --readme none --hidePageTitle --hideBreadcrumbs --hideInPageTOC --disableSources --out tmp packages/fetch-main/lib/index.ts",
+        "docs:concat": "concat-md --file-name-as-title --dir-name-as-title --debug tmp > docs/README.md",
+        "docs:cleanup": "rm -rf tmp",
         "test:coverage": "jest --collect-coverage",
         "test": "jest",
         "test:unit": "jest --testPathIgnorePatterns packages/fetch-e2e",
@@ -24,6 +29,7 @@
         "@types/jsonpath": "^0.2.0",
         "@types/rimraf": "^3.0.0",
         "autobind-decorator": "^2.4.0",
+        "concat-md": "^0.3.5",
         "eslint": "^7.27.0",
         "file-url": "^4.0.0",
         "husky": "^6.0.0",
@@ -42,6 +48,8 @@
         "ts-jest": "^27.0.2",
         "ts-loader": "^9.2.2",
         "ts-node": "^10.0.0",
+        "typedoc": "^0.21.2",
+        "typedoc-plugin-markdown": "^3.10.2",
         "typescript": "4.3.2",
         "zod": "^3.1.0"
     }

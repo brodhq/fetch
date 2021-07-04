@@ -6,9 +6,11 @@ import { FetchResponse } from './responseTypes'
 
 export async function createResponse<T>(
     context: ResponseContext<T>,
-    attrs: CreateResponseAttrs
+    attrs: CreateResponseAttrs<T>
 ): Promise<FetchResponse<T>> {
-    const encoded = context.fetchable.encode(attrs.request.body)
+    const encoded = attrs.request.body
+        ? context.fetchable.encode(attrs.request.body)
+        : null
     const request = buildRequest({
         ...attrs.request,
         body: encoded,

@@ -7,6 +7,7 @@ export const plugin: FetchPlugin = {
     name: 'fetch',
     depends: [httpPlugin],
     register({ http }, {}) {
+        // @ts-expect-error
         return config(http.request)([createJson()])
     },
 }

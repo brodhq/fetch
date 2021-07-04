@@ -18,7 +18,7 @@ describe('parser', () => {
             request: {
                 url: 'https://test.com',
                 method: 'get',
-                body: undefined,
+                body: null,
                 headers: {},
             },
         })
@@ -31,7 +31,7 @@ describe('parser', () => {
             request: {
                 url: 'https://test.com',
                 method: 'get',
-                body: undefined,
+                body: null,
                 headers: {},
             },
         })

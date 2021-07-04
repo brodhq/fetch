@@ -3,7 +3,7 @@ import { FetchRequest } from '../request'
 export interface FetchResponse<T = unknown> {
     status: number
     data: T
-    request: FetchRequest<T>
+    request: FetchRequest<unknown>
 }
 
 export type RawBody = string | NodeJS.ReadableStream
