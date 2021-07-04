@@ -1,5 +1,8 @@
 import { FetchRequest } from '../request'
 
+/**
+ * @internal
+ */
 export interface FetchResponse<T = unknown> {
     status: number
     data: T

@@ -53,6 +53,9 @@ export interface FetchFn {
         init: FetchInit<T>,
         callback: FetchCallback<T, TRet>
     ): AwaitableFetchRequest<T, TRet>
+    /**
+     * @internal
+     */
     <T, TRet>(
         fetchable: Fetchable<T>,
         init: FetchInit<T>,

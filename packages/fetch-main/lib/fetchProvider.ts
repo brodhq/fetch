@@ -3,6 +3,9 @@ import { FetchConfig } from './fetchConfig'
 import { Fetch } from './fetchFacade'
 import { createHttp } from './http'
 
+/**
+ * @internal
+ */
 export function config({
     adapter = createHttp(),
     ...config
