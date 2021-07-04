@@ -6,9 +6,21 @@
  * @module
  * @example
  * ```typescript
- * const response = fetch(Json, 'https://example.com/posts/1')
- * response.status
- * // => 200
+ * import { fetch } from '@brod/fetch'
+ * import { Json } from '@brod/json'
+ *
+ * const url = 'https://jsonplaceholder.typicode.com/todos/1'
+ * const response = fetch(Json, url, ({ data }) => ({
+ *      id: data['id'].toInteger(),
+ *      title: data['title'].toText(),
+ *      completed: data['completed'].toBoolean()
+ * }))
+ * response.data.id
+ * // => 1
+ * response.data.title
+ * // => 'quis ut nam facilis et officia qui'
+ * response.data.completed
+ * // => true
  * ```
  *
  */

@@ -4,12 +4,24 @@ A set of functions for working with maps.
 
 Many functions for maps, which implement the Enumerable protocol, are found in the Enum module. Additionally, the following functions for maps are found in Kernel:
 
-**Examples**
+**Example**
 
 ```typescript
-const response = fetch(Json, 'https://example.com/posts/1')
-response.status
-// => 200
+import { fetch } from '@brod/fetch'
+import { Json } from '@brod/json'
+
+const url = 'https://jsonplaceholder.typicode.com/todos/1'
+const response = fetch(Json, url, ({ data }) => ({
+     id: data['id'].toInteger(),
+     title: data['title'].toText(),
+     completed: data['completed'].toBoolean()
+}))
+response.data.id
+// => 1
+response.data.title
+// => 'quis ut nam facilis et officia qui'
+response.data.completed
+// => true
 ```
 
 # Interfaces
@@ -20,7 +32,7 @@ response.status
 
 Fetch data at url as JSON
 
-**Examples**
+**Example**
 
 ```typescript
 const response = fetch(Json, 'https://example.com/posts/1')
@@ -32,7 +44,7 @@ response.status
 
 Fetch data at url as JSON and parse response in callback
 
-**Examples**
+**Example**
 
 ```typescript
 const response = fetch(Json, 'https://example.com/posts/1', response => ({
