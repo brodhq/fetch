@@ -20,7 +20,7 @@ export interface FetchFn {
      * Fetch data at url as JSON
      *
      * @param type - Data type
-     * @param init - A URL string or request object
+     * @param url - Request uRL
      * @example
      * ```typescript
      * const response = fetch(Json, 'https://example.com/posts/1')
@@ -28,10 +28,7 @@ export interface FetchFn {
      * // => 200
      * ```
      */
-    <T, TRet>(type: Fetchable<T>, init: FetchInit<T>): AwaitableFetchRequest<
-        T,
-        TRet
-    >
+    <T, TRet>(type: Fetchable<T>, url: string): AwaitableFetchRequest<T, TRet>
     /**
      * Fetch data at url using request as object properties
      *

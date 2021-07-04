@@ -28,7 +28,7 @@ response.data === {
 
 ## Fetchfn
 
-▸ **FetchFn**(`type`, `init`): `AwaitableFetchRequest`
+▸ **FetchFn**(`type`, `url`): `AwaitableFetchRequest`
 
 Fetch data at url as JSON
 
