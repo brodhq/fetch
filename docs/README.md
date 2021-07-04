@@ -47,7 +47,10 @@ Fetch data at url using request as object properties
 **Example**
 
 ```typescript
-const response = fetch(Json, { url: 'https://example.com/posts/1', method: 'get' })
+const response = fetch(Json, {
+     method: 'get'
+     url: 'https://example.com/posts/1',
+})
 response.status
 // => 200
 ```
@@ -59,11 +62,15 @@ Fetch data at url as JSON and parse response in callback
 **Example**
 
 ```typescript
-const response = fetch(Json, 'https://example.com/posts/1', response => ({
-     title: response.data['title'].toString(),
-     content: response.data['content'].toString(),
-     postedAt: response.data['date'].toDate()
-}))
+const response = fetch(
+     Json,
+     'https://example.com/posts/1',
+     response => ({
+         title: response.data['title'].toString(),
+         content: response.data['content'].toString(),
+         postedAt: response.data['date'].toDate()
+     })
+)
 response.title
 // => 'my post'
 ```

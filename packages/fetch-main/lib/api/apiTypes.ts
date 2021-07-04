@@ -36,7 +36,10 @@ export interface FetchFn {
      * @param init - Request object
      * @example
      * ```typescript
-     * const response = fetch(Json, { url: 'https://example.com/posts/1', method: 'get' })
+     * const response = fetch(Json, {
+     *      method: 'get'
+     *      url: 'https://example.com/posts/1',
+     * })
      * response.status
      * // => 200
      * ```
@@ -52,11 +55,15 @@ export interface FetchFn {
      * @param init - A URL string or request object
      * @example
      * ```typescript
-     * const response = fetch(Json, 'https://example.com/posts/1', response => ({
-     *      title: response.data['title'].toString(),
-     *      content: response.data['content'].toString(),
-     *      postedAt: response.data['date'].toDate()
-     * }))
+     * const response = fetch(
+     *      Json,
+     *      'https://example.com/posts/1',
+     *      response => ({
+     *          title: response.data['title'].toString(),
+     *          content: response.data['content'].toString(),
+     *          postedAt: response.data['date'].toDate()
+     *      })
+     * )
      * response.title
      * // => 'my post'
      * ```
