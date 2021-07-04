@@ -16,11 +16,11 @@ const response = fetch(Json, url, ({ data }) => ({
      title: data['title'].toText(),
      completed: data['completed'].toBoolean()
 }))
-response.data.id
-// => 1
-response.data.title
-// => 'quis ut nam facilis et officia qui'
-response.data.completed
+response.data === {
+     id: 1,
+     title: 'quis ut nam facilis et officia qui',
+     completed: true
+}
 // => true
 ```
 
