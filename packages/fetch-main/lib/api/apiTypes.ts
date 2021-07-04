@@ -33,6 +33,22 @@ export interface FetchFn {
         TRet
     >
     /**
+     * Fetch data at url using request as object properties
+     *
+     * @param type - Data type
+     * @param init - Request object
+     * @example
+     * ```typescript
+     * const response = fetch(Json, { url: 'https://example.com/posts/1', method: 'get' })
+     * response.status
+     * // => 200
+     * ```
+     */
+    <T, TRet>(
+        type: Fetchable<T>,
+        init: FetchObjectInit<T>
+    ): AwaitableFetchRequest<T, TRet>
+    /**
      * Fetch data at url as JSON and parse response in callback
      *
      * @param type - Data type

@@ -8,7 +8,7 @@
         "build": "lerna run build --stream",
         "start": "lerna run start --stream",
         "prepare": "husky install",
-        "release:patch": "git add -A && git commit -am \"released\" --allow-empty && lerna version patch --yes --force-publish",
+        "release:patch": "npm run docs && git add -A && git commit -am \"released\" --allow-empty && lerna version patch --yes --force-publish",
         "docs": "npm run docs:prepare && npm run docs:generate && npm run docs:concat && npm run docs:cleanup",
         "docs:prepare": "rm -rf docs -r && rm -rf tmp && mkdir docs",
         "docs:generate": "./node_modules/.bin/typedoc --excludeInternal --readme none --hidePageTitle --hideBreadcrumbs --hideInPageTOC --disableSources --out tmp packages/fetch-main/lib/index.ts",
