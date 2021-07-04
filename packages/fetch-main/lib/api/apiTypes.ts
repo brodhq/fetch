@@ -19,7 +19,7 @@ export interface FetchFn {
     /**
      * Fetch data at url as JSON
      *
-     * @param fetchable - Data type
+     * @param type - Data type
      * @param init - A URL string or request object
      * @example
      * ```typescript
@@ -28,14 +28,14 @@ export interface FetchFn {
      * // => 200
      * ```
      */
-    <T, TRet>(
-        fetchable: Fetchable<T>,
-        init: FetchInit<T>
-    ): AwaitableFetchRequest<T, TRet>
+    <T, TRet>(type: Fetchable<T>, init: FetchInit<T>): AwaitableFetchRequest<
+        T,
+        TRet
+    >
     /**
      * Fetch data at url as JSON and parse response in callback
      *
-     * @param fetchable - Data type
+     * @param type - Data type
      * @param init - A URL string or request object
      * @example
      * ```typescript
@@ -49,7 +49,7 @@ export interface FetchFn {
      * ```
      */
     <T, TRet>(
-        fetchable: Fetchable<T>,
+        type: Fetchable<T>,
         init: FetchInit<T>,
         callback: FetchCallback<T, TRet>
     ): AwaitableFetchRequest<T, TRet>
@@ -57,7 +57,7 @@ export interface FetchFn {
      * @internal
      */
     <T, TRet>(
-        fetchable: Fetchable<T>,
+        type: Fetchable<T>,
         init: FetchInit<T>,
         callback?: FetchCallback<T, TRet>
     ): AwaitableFetchRequest<T, TRet>
