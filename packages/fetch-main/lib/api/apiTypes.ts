@@ -28,7 +28,7 @@ export interface FetchFn {
      * // => 200
      * ```
      */
-    <T, TRet>(type: Fetchable<T>, url: string): AwaitableFetchRequest<T, TRet>
+    <T, TRet>(type: Fetchable<T>, url: string): Promise<TRet>
     /**
      * Fetch data at url using request as object properties
      *
@@ -44,10 +44,7 @@ export interface FetchFn {
      * // => 200
      * ```
      */
-    <T, TRet>(
-        type: Fetchable<T>,
-        init: FetchObjectInit<T>
-    ): AwaitableFetchRequest<T, TRet>
+    <T, TRet>(type: Fetchable<T>, init: FetchObjectInit<T>): Promise<TRet>
     /**
      * Fetch data at url as JSON and parse response in callback
      *
@@ -72,7 +69,7 @@ export interface FetchFn {
         type: Fetchable<T>,
         init: FetchInit<T>,
         callback: FetchCallback<T, TRet>
-    ): AwaitableFetchRequest<T, TRet>
+    ): Promise<TRet>
     /**
      * @internal
      */
@@ -80,7 +77,7 @@ export interface FetchFn {
         type: Fetchable<T>,
         init: FetchInit<T>,
         callback?: FetchCallback<T, TRet>
-    ): AwaitableFetchRequest<T, TRet>
+    ): Promise<TRet>
 }
 
 export interface AwaitableFetchRequest<T, TRet = unknown>

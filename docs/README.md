@@ -40,7 +40,7 @@ response.data === {
 
 ## Fetchfn
 
-▸ **FetchFn**(`type`, `url`): `AwaitableFetchRequest`
+▸ **FetchFn**(`type`, `url`): `Promise`
 
 Fetch data at url as JSON
 
@@ -52,7 +52,7 @@ response.status
 // => 200
 ```
 
-▸ **FetchFn**(`type`, `init`): `AwaitableFetchRequest`
+▸ **FetchFn**(`type`, `init`): `Promise`
 
 Fetch data at url using request as object properties
 
@@ -67,7 +67,7 @@ response.status
 // => 200
 ```
 
-▸ **FetchFn**(`type`, `init`, `callback`): `AwaitableFetchRequest`
+▸ **FetchFn**(`type`, `init`, `callback`): `Promise`
 
 Fetch data at url as JSON and parse response in callback
 

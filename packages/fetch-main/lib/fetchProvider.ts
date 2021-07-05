@@ -1,3 +1,4 @@
+import { FetchFn } from './api'
 import { FetchConfig } from './fetchConfig'
 import { fetchProtocol } from './fetchFacade'
 import { createHttp } from './http'
@@ -10,7 +11,7 @@ import { FetchResponse } from './response'
 export function config({
     adapter = createHttp(),
     ...config
-}: Partial<FetchConfig> = {}) {
+}: Partial<FetchConfig> = {}): FetchFn {
     return createProtocol<FetchConfig, FetchResponse>(fetchProtocol, {
         adapter,
         ...config,
