@@ -6,11 +6,11 @@ import {
     ProtocolFn,
 } from './middlewareTypes'
 
-export const createProtocol = <TConf, TCon = unknown>(
-    definition: Protocol<TConf, TCon>,
-    config: TConf,
+export const createProtocol = <TProto extends Protocol<any, any>>(
+    definition: TProto,
+    config: TProto extends Protocol<infer TConf> ? TConf : never,
     enhancer?: ProtocolEnhancer
-): ProtocolFn<TCon> => {
+): ProtocolFn<TProto extends Protocol<any, infer TCon> ? TCon : never> => {
     if (enhancer) {
         // @ts-expect-error
         return enhancer(createProtocol)(definition, config)

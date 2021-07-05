@@ -8,7 +8,7 @@ import { FetchResponse } from './responseTypes'
 export async function createResponse<T>(
     context: ResponseContext<T>,
     attrs: CreateResponseAttrs<T>
-): Promise<FetchResponse<T>> {
+): Promise<FetchResponse> {
     const { headers = {}, encode, decode } = context.fetchable[impl]
     const encoded = attrs.request.body ? encode(attrs.request.body) : null
     const request = buildRequest({

@@ -5,7 +5,7 @@ import { createResponse } from './response'
 /**
  * @internal
  */
-export const fetchProtocol: FetchProtocol =
+export const Fetch: FetchProtocol =
     (config) => async (type, init, callback) => {
         const parsedinit = buildInit(init)
         const attrs = buildAttrs(parsedinit)
@@ -16,5 +16,10 @@ export const fetchProtocol: FetchProtocol =
             },
             attrs
         )
-        return callback!(response.data, 0, response)
+        return callback!(
+            // @ts-expect-error
+            response.data,
+            0,
+            response
+        )
     }

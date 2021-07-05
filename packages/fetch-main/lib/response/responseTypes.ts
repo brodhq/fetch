@@ -3,9 +3,9 @@ import { FetchRequest } from '../request'
 /**
  * @internal
  */
-export interface FetchResponse<T = unknown> {
+export interface FetchResponse {
     status: number
-    data: T
+    data: unknown
     request: FetchRequest<unknown>
 }
 

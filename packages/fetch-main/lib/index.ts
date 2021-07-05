@@ -33,6 +33,7 @@ export const fetch = config()
 
 export { config } from './fetchProvider'
 export { FetchAdapter } from './fetchAdapter'
+export { Fetch } from './fetchFacade'
 export { Fetchable } from './fetchable'
 export { FetchRequest } from './request'
 export { FetchResponse } from './response'

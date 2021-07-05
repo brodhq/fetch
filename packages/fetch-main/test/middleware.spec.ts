@@ -1,7 +1,11 @@
 import { FetchResponse } from '../lib'
 import { FetchConfig } from '../lib/fetchConfig'
-import { fetchProtocol } from '../lib/fetchFacade'
-import { applyMiddleware, createProtocol } from '../lib/middleware'
+import { Fetch } from '../lib/fetchFacade'
+import {
+    applyMiddleware,
+    createProtocol,
+    FetchProtocol,
+} from '../lib/middleware'
 import { Json } from './support'
 import { proxy, retry } from './support/testFixtures'
 
@@ -15,8 +19,8 @@ const config: FetchConfig = {
     },
 }
 
-const fetch = createProtocol<FetchConfig, FetchResponse>(
-    fetchProtocol,
+const fetch = createProtocol(
+    Fetch,
     config,
     applyMiddleware(retry, proxy({ 'google.com': 'localhost:4000' }))
 )
