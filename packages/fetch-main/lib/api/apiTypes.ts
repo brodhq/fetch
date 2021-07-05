@@ -4,7 +4,9 @@ import { CreateRequestAttrs } from '../request/requestAttrs'
 import { FetchResponse } from '../response'
 
 export type FetchCallback<T, TRet = unknown> = (
-    response: FetchResponse<T>
+    response: FetchResponse<T>,
+    index: number,
+    context: FetchResponse<T>
 ) => Promise<TRet> | TRet
 
 export type FetchUrlInit = string
