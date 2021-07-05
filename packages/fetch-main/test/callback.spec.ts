@@ -14,8 +14,8 @@ const fetch = config({
 describe('callback', () => {
     test('simple', async () => {
         await expect(
-            fetch(Json, 'https://test.com', (response) => ({
-                status: response.status + 5,
+            fetch(Json, 'https://test.com', (_data, _index, context) => ({
+                status: context.status + 5,
             }))
         ).resolves.toStrictEqual({
             status: 205,

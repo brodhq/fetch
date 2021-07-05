@@ -1,7 +1,8 @@
-import { FetchFn } from './api/apiTypes'
 import { FetchConfig } from './fetchConfig'
-import { Fetch } from './fetchFacade'
+import { fetchProtocol } from './fetchFacade'
 import { createHttp } from './http'
+import { createProtocol } from './middleware'
+import { FetchResponse } from './response'
 
 /**
  * @internal
@@ -9,7 +10,9 @@ import { createHttp } from './http'
 export function config({
     adapter = createHttp(),
     ...config
-}: Partial<FetchConfig> = {}): FetchFn {
-    const instance = new Fetch({ adapter, ...config })
-    return instance.request
+}: Partial<FetchConfig> = {}) {
+    return createProtocol<FetchConfig, FetchResponse>(fetchProtocol, {
+        adapter,
+        ...config,
+    })
 }

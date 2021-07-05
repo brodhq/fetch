@@ -25,7 +25,7 @@
  *
  */
 import { config } from './fetchProvider'
-
+import { impl } from './fetchable'
 /**
  * @internal
  */
@@ -37,3 +37,5 @@ export { Fetchable } from './fetchable'
 export { FetchRequest } from './request'
 export { FetchResponse } from './response'
 export { FetchFn } from './api'
+
+export const Symbol = { impl: impl as typeof impl }

@@ -1,42 +1,62 @@
-import { config } from '../lib'
+import { FetchResponse } from '../lib'
 import { FetchConfig } from '../lib/fetchConfig'
+import { fetchProtocol } from '../lib/fetchFacade'
 import { applyMiddleware, createProtocol } from '../lib/middleware'
 import { Json } from './support'
-import { logger } from './support/testFixtures'
+import { proxy, retry } from './support/testFixtures'
 
-const fetch = createProtocol<FetchConfig, object, any>(
-    (config) => async (type, init, callback) => {
-        const response = await (typeof init === 'string'
-            ? config.adapter.create({ url: init })
-            : config.adapter.create({ url: init.url }))
-        return callback({
-            ...response,
-            body: type.decode(response.body.toString()),
-        })
+const config: FetchConfig = {
+    adapter: {
+        create: async () => ({
+            status: 200,
+            body: '{"five":5}',
+            headers: {},
+        }),
     },
-    {
-        adapter: {
-            create: async () => ({
-                status: 200,
-                body: '{}',
-                headers: {},
-            }),
-        },
-    },
-    applyMiddleware(logger)
+}
+
+const fetch = createProtocol<FetchConfig, FetchResponse>(
+    fetchProtocol,
+    config,
+    applyMiddleware(retry, proxy({ 'google.com': 'localhost:4000' }))
 )
 
 describe('middleware', () => {
     test('simple', async () => {
         expect(
             await fetch(Json, {
-                url: 'google.com',
+                url: 'http://google.com',
                 method: 'get',
             })
         ).toStrictEqual({
+            five: 5,
+        })
+    })
+    test('simple', async () => {
+        expect(
+            await fetch(
+                Json,
+                {
+                    url: 'http://google.com',
+                    method: 'get',
+                },
+                (data, _index, context) => ({
+                    status: context.status,
+                    request: context.request,
+                    data: { five: data['five'] },
+                })
+            )
+        ).toStrictEqual({
             status: 200,
-            body: {},
-            headers: {},
+            data: { five: 5 },
+            request: {
+                url: 'http://localhost:4000/',
+                method: 'get',
+                body: null,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            },
         })
     })
 })

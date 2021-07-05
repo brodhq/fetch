@@ -13,8 +13,8 @@ const fetch = config({
 
 describe('promise', () => {
     test('simple', async () => {
-        await expect(fetch(Text, 'https://test.com')).resolves.toMatchObject({
-            data: `{"five":5}`,
-        })
+        await expect(fetch(Text, 'https://test.com')).resolves.toBe(
+            `{"five":5}`
+        )
     })
 })

@@ -1,35 +1,18 @@
-import { FetchCallback, FetchInit } from '../api'
-import { Fetchable } from '../fetchable'
-import { Middleware, MiddlewareAPI, Protocol } from './middlewareTypes'
+import {
+    Middleware,
+    MiddlewareAPI,
+    Protocol,
+    ProtocolEnhancer,
+    ProtocolFn,
+} from './middlewareTypes'
 
-export type ProtocolCallback<T, TRet = unknown> = (
-    response: T
-) => Promise<TRet> | TRet
-
-export type ProtocolFn<T, TRet = unknown> = (
-    type: Fetchable<T>,
-    init: FetchInit<T>,
-    callback?: ProtocolCallback<T, TRet>
-) => ProtocolResult<TRet>
-
-export interface ProtocolResult<T> extends Promise<T> {}
-
-export type ProtocolCreator = <TConf, TVal, TRet>(
-    protocol: Protocol<TConf, TVal, TRet>,
+export const createProtocol = <TConf, TCon = unknown>(
+    definition: Protocol<TConf, TCon>,
     config: TConf,
     enhancer?: ProtocolEnhancer
-) => ProtocolFn<TVal, TRet>
-export type ProtocolEnhancer = (next: ProtocolCreator) => ProtocolCreator
-export type ProtocolEnhancerProtocolCreator = <TVal, TRet>(
-    app: ProtocolFn<TVal, TRet>
-) => ProtocolFn<TVal, TRet>
-
-export const createProtocol = <TConf, TVal, TRet>(
-    definition: Protocol<TConf, TVal, TRet>,
-    config: TConf,
-    enhancer?: ProtocolEnhancer
-): ProtocolFn<TVal, TRet> => {
+): ProtocolFn<TCon> => {
     if (enhancer) {
+        // @ts-expect-error
         return enhancer(createProtocol)(definition, config)
     }
     return async (

@@ -24,6 +24,18 @@ response.data === {
 // => true
 ```
 
+## Variables
+
+### Symbol
+
+• `Const` **Symbol**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `impl` | typeof `impl` |
+
 # Interfaces
 
 ## Fetchfn
