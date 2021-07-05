@@ -11,29 +11,15 @@ const fetch = config({
     },
 })
 
-describe('parser', () => {
+describe('parse', () => {
     test('noop', async () => {
-        await expect(fetch(Text, 'https://test.com')).resolves.toMatchObject({
-            data: `{"five":5}`,
-            request: {
-                url: 'https://test.com',
-                method: 'get',
-                body: null,
-                headers: {},
-            },
-        })
+        await expect(fetch(Text, 'https://test.com')).resolves.toBe(
+            `{"five":5}`
+        )
     })
     test('simple', async () => {
         await expect(fetch(Json, 'https://test.com')).resolves.toMatchObject({
-            data: {
-                five: 5,
-            },
-            request: {
-                url: 'https://test.com',
-                method: 'get',
-                body: null,
-                headers: {},
-            },
+            five: 5,
         })
     })
 })

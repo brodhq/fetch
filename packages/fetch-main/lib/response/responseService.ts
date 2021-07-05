@@ -1,3 +1,4 @@
+import { impl } from '../fetchable'
 import { buildRequest } from '../request/requestFactory'
 import { CreateResponseAttrs } from './responseAttrs'
 import { ResponseContext } from './responseContext'
@@ -8,19 +9,18 @@ export async function createResponse<T>(
     context: ResponseContext<T>,
     attrs: CreateResponseAttrs<T>
 ): Promise<FetchResponse<T>> {
-    const encoded = attrs.request.body
-        ? context.fetchable.encode(attrs.request.body)
-        : null
+    const { headers = {}, encode, decode } = context.fetchable[impl]
+    const encoded = attrs.request.body ? encode(attrs.request.body) : null
     const request = buildRequest({
         ...attrs.request,
         body: encoded,
         headers: {
             ...attrs.request.headers,
-            ...context.fetchable.headers,
+            ...headers,
         },
     })
     const raw = await context.adapter.create(request)
     const rawstring = await rawToString(raw.body)
-    const decoded = context.fetchable.decode(rawstring)
+    const decoded = decode(rawstring)
     return { status: raw.status, request, data: decoded }
 }
